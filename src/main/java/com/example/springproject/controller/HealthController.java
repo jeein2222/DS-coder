@@ -61,11 +61,26 @@ public class HealthController {
         return ResponseEntity.ok().body(response);
     }
 
+//    @DeleteMapping("/record/delete")
+//    public ResponseEntity<?> deleteHealth(String title){
+//        try{
+//            HealthEntity entity=service.findbyTitle(title);
+//            List<HealthEntity> entities = service.delete(entity);
+//            List<HealthDTO> dtos = entities.stream().map(HealthDTO::new).collect(Collectors.toList());
+//            ResponseDTO<HealthDTO> response=ResponseDTO.<HealthDTO>builder().data(dtos).build();
+//            return ResponseEntity.ok().body(response);
+//
+//        }catch(Exception e){
+//            String error=e.getMessage();
+//            ResponseDTO<HealthDTO> response=ResponseDTO.<HealthDTO>builder().error(error).build();
+//            return ResponseEntity.badRequest().body(response);
+//        }
+//    }
     @DeleteMapping("/record/delete")
-    public ResponseEntity<?> deleteHealth(@RequestBody HealthDTO dto){
+    public ResponseEntity<?> deleteHealth(@RequestParam(value="title") String title){
         try{
             String temporaryUserId="temporary-user";
-            HealthEntity entity = HealthDTO.toEntity(dto);
+            HealthEntity entity=service.findbyTitle(title);
             entity.setUserId(temporaryUserId);
             List<HealthEntity> entities = service.delete(entity);
             List<HealthDTO> dtos = entities.stream().map(HealthDTO::new).collect(Collectors.toList());

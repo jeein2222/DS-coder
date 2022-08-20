@@ -30,34 +30,43 @@ function ajax_get(){
                         let d=data.data;
 
                         for (let i=0;i<d.length;i++){
-                            const card=document.createElement("div");
-                            card.setAttribute('class',"card");
+                            const button=document.createElement("button");
+                            const id=document.createElement("p");
+                            const title=document.createElement("p");
+                            const time=document.createElement("p");
+                            const food=document.createElement("p");
 
-                            const cardDiv=document.createElement("div");
-                            cardDiv.setAttribute('class',"card-body");
+                            id.innerHTML=d[i]['id'];
+                            title.innerHTML=d[i]['title']
+                            time.innerHTML=d[i]['time']
+                            food.innerHTML=d[i]['food'];
+                            button.appendChild(id);
+                            button.appendChild(title);
+                            button.appendChild(time);
+                            button.appendChild(food);
+                            button.setAttribute('class',"btn btn-light");
 
-                            const title=document.createElement("h5");
-                            title.setAttribute('class','card-title');
-                            title.innerHTML="exercise: "+d[i]['title'];
-
-                            const time=document.createElement("h6");
-                            time.setAttribute('class',"card-subtitle mb-2 text-muted")
-                            time.innerHTML="time: "+d[i]['time'];
-
-                            const food=document.createElement("h6");
-                            food.setAttribute('class',"card-subtitle mb-2 text-muted")
-                            food.innerHTML="food: "+d[i]['food'];
-
-                            cardDiv.appendChild(title);
-                            cardDiv.appendChild(time);
-                            cardDiv.appendChild(food);
-
-                            card.appendChild(cardDiv);
-                            currentDiv.appendChild(card);
+                            currentDiv.appendChild(button);
                         }
             },
             error : function(e) {
                     console.log(e.responseText);
             }
     });
+}
+
+function ajax_delete(frm){
+    const t=document.getElementById("title").value;
+    const param={"title":t};
+    $.ajax({
+        url:'record/delete',
+        type:'DELETE',
+        data:param,
+        success:function(data){
+            console.log(data.data);
+        },error:function(xhr,status,error){
+            console.log("["+xhr.status+"]"+error);
+        }
+    });
+    return false;
 }

@@ -27,6 +27,10 @@ public class HealthService {
         return repository.findByUserId(userId);
     }
 
+    public HealthEntity findbyTitle(final String title){
+        return repository.findByTitle(title);
+    }
+
     public List<HealthEntity> update(final HealthEntity entity){
         validate(entity);
         final Optional<HealthEntity> original = repository.findById(entity.getId());

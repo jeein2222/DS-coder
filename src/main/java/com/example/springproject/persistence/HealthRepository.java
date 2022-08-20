@@ -10,5 +10,6 @@ import java.util.List;
 @Repository
 public interface HealthRepository extends JpaRepository<HealthEntity,String> {
     List<HealthEntity> findByUserId(String userId);
+    HealthEntity findByTitle(String title);
 
 }
