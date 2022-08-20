@@ -16,6 +16,9 @@
     display:flex;
 }
 
+#id, #id_label{
+    display:none;
+}
 
 #records{
     position:relative;
@@ -44,6 +47,12 @@
     float:left;
 }
 
+#update{
+    position:relative;
+    left:60px;
+    top:200px;
+    float:left;
+}
 .record h5{
     position:absolute;
     left:10px;

@@ -20,12 +20,24 @@ function removeAllchild(div){
     }
 }
 
+function getHealth(e){
+    if (e.target !== e.currentTarget)
+        return;
+    e.preventDefault();
+    console.log(e.target);
+    let listChild=e.target.childNodes;
+    let id=document.getElementById("id");
+    id.style.display = "block";
+    document.getElementById("id_label").style.display = "block";
+    id.value=listChild[0].innerHTML;
+}
+
 function ajax_get(){
     const currentDiv=document.getElementById('records');
     removeAllchild(currentDiv);
     $.ajax({
-            url : "record/retrieve", // test.jsp 에서 받아옴
-            dataType :"json", // 데이터타입을 json 으로 받아옴
+            url : "record/retrieve",
+            dataType :"json",
             success : function(data) {
                         let d=data.data;
 
@@ -35,17 +47,21 @@ function ajax_get(){
                             const title=document.createElement("p");
                             const time=document.createElement("p");
                             const food=document.createElement("p");
-
+                            id.setAttribute("id","bid");
+                            title.setAttribute("id","btitle");
+                            time.setAttribute("id","btime");
                             id.innerHTML=d[i]['id'];
                             title.innerHTML=d[i]['title']
                             time.innerHTML=d[i]['time']
                             food.innerHTML=d[i]['food'];
+
                             button.appendChild(id);
                             button.appendChild(title);
                             button.appendChild(time);
                             button.appendChild(food);
-                            button.setAttribute('class',"btn btn-light");
 
+                            button.setAttribute('class',"btn btn-light");
+                            button.addEventListener('click',getHealth);
                             currentDiv.appendChild(button);
                         }
             },
@@ -56,8 +72,8 @@ function ajax_get(){
 }
 
 function ajax_delete(frm){
-    const t=document.getElementById("title").value;
-    const param={"title":t};
+    const formData=$("#record-form").serializeObject();
+    const param={"id":id};
     $.ajax({
         url:'record/delete',
         type:'DELETE',
@@ -68,5 +84,28 @@ function ajax_delete(frm){
             console.log("["+xhr.status+"]"+error);
         }
     });
+    document.getElementById("id").style.display = "none";
+    document.getElementById("id_label").style.display = "none";
     return false;
+}
+
+function ajax_update(frm){
+    const formData=$("#record-form").serializeObject();
+    $.ajax({
+            url:'record/update',
+            type:'PUT',
+            contentType:'application/json',
+            data:JSON.stringify(formData),
+            success:function(data){
+                console.log(data.data);
+            },error:function(xhr,status,error){
+                console.log("["+xhr.status+"]"+error);
+            }
+        });
+        return false;
+    document.getElementById("id").style.display = "none";
+    document.getElementById("id_label").style.display = "none";
+
+    return false;
+
 }

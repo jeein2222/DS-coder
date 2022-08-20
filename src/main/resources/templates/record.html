@@ -28,6 +28,10 @@
     <div class="record">
         <form id="record-form">
             <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text" id="id_label">id</span>
+                <input type="text" name="id" id="id" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" visible="false">
+            </div>
+            <div class="input-group input-group-sm mb-3">
                 <span class="input-group-text" >exercise</span>
                 <input type="text" name="title" id="title" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
             </div>
@@ -43,6 +47,7 @@
             <button type="button" class="btn btn-primary" id="save" onclick="ajax_send()" value="call">Save</button>
             <button type="button" class="btn btn-primary" id="retrieve" onclick="ajax_get()" value="call">Retrieve</button>
             <button type="button" class="btn btn-primary" id="remove" onclick="ajax_delete()" value="call">Delete</button>
+            <button type="button" class="btn btn-primary" id="update" onclick="ajax_update()" value="call">Update</button>
             <br/>
             <br/>
             <div id="records">

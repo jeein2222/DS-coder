@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @CrossOrigin(origins="*", allowedHeaders = "*")
@@ -53,7 +54,7 @@ public class HealthController {
     @PutMapping("/record/update")
     public ResponseEntity<?> updateHealth(@RequestBody HealthDTO dto){
         String temporaryUserId="temporary-user";
-        HealthEntity entity = HealthDTO.toEntity(dto);
+        HealthEntity entity=HealthDTO.toEntity(dto);
         entity.setUserId(temporaryUserId);
         List<HealthEntity> entities = service.update(entity);
         List<HealthDTO> dtos = entities.stream().map(HealthDTO::new).collect(Collectors.toList());
@@ -61,28 +62,13 @@ public class HealthController {
         return ResponseEntity.ok().body(response);
     }
 
-//    @DeleteMapping("/record/delete")
-//    public ResponseEntity<?> deleteHealth(String title){
-//        try{
-//            HealthEntity entity=service.findbyTitle(title);
-//            List<HealthEntity> entities = service.delete(entity);
-//            List<HealthDTO> dtos = entities.stream().map(HealthDTO::new).collect(Collectors.toList());
-//            ResponseDTO<HealthDTO> response=ResponseDTO.<HealthDTO>builder().data(dtos).build();
-//            return ResponseEntity.ok().body(response);
-//
-//        }catch(Exception e){
-//            String error=e.getMessage();
-//            ResponseDTO<HealthDTO> response=ResponseDTO.<HealthDTO>builder().error(error).build();
-//            return ResponseEntity.badRequest().body(response);
-//        }
-//    }
     @DeleteMapping("/record/delete")
-    public ResponseEntity<?> deleteHealth(@RequestParam(value="title") String title){
+    public ResponseEntity<?> deleteHealth(@RequestParam(value="id") String id){
         try{
             String temporaryUserId="temporary-user";
-            HealthEntity entity=service.findbyTitle(title);
-            entity.setUserId(temporaryUserId);
-            List<HealthEntity> entities = service.delete(entity);
+            Optional<HealthEntity> entity=service.findById(id);
+            entity.orElseThrow(IllegalStateException::new).setUserId(temporaryUserId);
+            List<HealthEntity> entities = service.delete(entity.orElseThrow(IllegalStateException::new));
             List<HealthDTO> dtos = entities.stream().map(HealthDTO::new).collect(Collectors.toList());
             ResponseDTO<HealthDTO> response=ResponseDTO.<HealthDTO>builder().data(dtos).build();
             return ResponseEntity.ok().body(response);
