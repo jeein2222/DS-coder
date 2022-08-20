@@ -11,7 +11,18 @@ function ajax_send(frm){
             console.log("["+xhr.status+"]"+error);
         }
     });
+    clear();
     return false;
+}
+
+function clear(){
+    const title=document.getElementById("title");
+    const time=document.getElementById("time");
+    const food=document.getElementById("food");
+    title.value="";
+    time.value="";
+    food.value="";
+
 }
 
 function removeAllchild(div){
@@ -24,12 +35,19 @@ function getHealth(e){
     if (e.target !== e.currentTarget)
         return;
     e.preventDefault();
-    console.log(e.target);
-    let listChild=e.target.childNodes;
+    const button = e.target;
+    let listChild=button.childNodes;
     let id=document.getElementById("id");
+    let title=document.getElementById("title");
+    let time=document.getElementById("time");
+    let food=document.getElementById("food");
     id.style.display = "block";
     document.getElementById("id_label").style.display = "block";
     id.value=listChild[0].innerHTML;
+    title.value=listChild[1].innerHTML;
+    time.value=listChild[2].innerHTML;
+    food.value=listChild[3].innerHTML;
+
 }
 
 function ajax_get(){
@@ -72,7 +90,7 @@ function ajax_get(){
 }
 
 function ajax_delete(frm){
-    const formData=$("#record-form").serializeObject();
+    const id=document.getElementById("id").value;
     const param={"id":id};
     $.ajax({
         url:'record/delete',
@@ -86,6 +104,7 @@ function ajax_delete(frm){
     });
     document.getElementById("id").style.display = "none";
     document.getElementById("id_label").style.display = "none";
+    clear();
     return false;
 }
 
@@ -102,10 +121,9 @@ function ajax_update(frm){
                 console.log("["+xhr.status+"]"+error);
             }
         });
-        return false;
     document.getElementById("id").style.display = "none";
     document.getElementById("id_label").style.display = "none";
-
+    clear();
     return false;
 
 }

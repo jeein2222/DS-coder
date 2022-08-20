@@ -6,6 +6,12 @@
     justify-content: center;
 }
 
+body{
+    marin-top:20px;
+    marin-left:20px;
+}
+
+
 #record-form{
     position: relative;
     left:30px;
@@ -58,4 +64,22 @@
     left:10px;
     top:400px;
     float:left;
+}
+
+.services{
+    height: 100px;
+    background-color: black;
+    color: white;
+}
+
+.about{
+    height: 100px;
+    background-color: white;
+    color: black;
+}
+
+.contact{
+    height: 100px;
+    background-color: black;
+    color:white;
 }

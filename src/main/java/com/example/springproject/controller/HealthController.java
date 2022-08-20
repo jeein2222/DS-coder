@@ -4,14 +4,10 @@ import com.example.springproject.dto.HealthDTO;
 import com.example.springproject.dto.ResponseDTO;
 import com.example.springproject.model.HealthEntity;
 import com.example.springproject.service.HealthService;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;

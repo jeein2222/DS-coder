@@ -6,6 +6,11 @@
     justify-content: center;
 }
 
+body{
+    marin-top:10px;
+    marin-left:10px;
+}
+
 .title{
     display: flex;
     flex-direction: column;
