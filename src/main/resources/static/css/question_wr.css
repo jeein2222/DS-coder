@@ -1,0 +1,101 @@
+.header{
+    height: 100vh;
+    background-repeat : no-repeat;
+    background-size : cover;
+    display: flex;
+    justify-content: center;
+}
+
+body{
+    marin-top:20px;
+    marin-left:20px;
+}
+
+
+#record-form{
+    position: relative;
+    left:30px;
+    top:200px;
+    width:500px;
+    flex-direction: column;
+    justify-content: center;
+    display:flex;
+}
+
+#id, #id_label{
+    display:none;
+}
+
+#records{
+    position:relative;
+    left:0px;
+    top:220px;
+    width:800px;
+}
+#save{
+    position:relative;
+    left:30px;
+    top:200px;
+    float:left;
+}
+
+#retrieve{
+    position:relative;
+    left:40px;
+    top:200px;
+    float:left;
+}
+
+#code{
+    width:500px;
+    height:500px;
+
+}
+
+#editing-code{
+    position:relative;
+    float:left;
+}
+
+#highlighting-code {
+    position:relative;
+    float:left;
+}
+
+#remove{
+    position:relative;
+    left:50px;
+    top:200px;
+    float:left;
+}
+
+#update{
+    position:relative;
+    left:60px;
+    top:200px;
+    float:left;
+}
+.record h5{
+    position:absolute;
+    left:10px;
+    top:400px;
+    float:left;
+}
+
+.services{
+    height: 100px;
+    background-color: black;
+    color: white;
+}
+
+.about{
+    height: 100px;
+    background-color: white;
+    color: black;
+}
+
+.contact{
+    height: 100px;
+    background-color: black;
+    color:white;
+}

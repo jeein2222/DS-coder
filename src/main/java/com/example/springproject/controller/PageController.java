@@ -21,9 +21,20 @@ public class PageController {
 
     }
     @GetMapping("/question")
-    public String record() {
-        return "question";
+    public String question_list() {
+        return "question_list";
 
+    }
+
+    @GetMapping("/question/write")
+    public String question_write() {
+        return "question_wr";
+
+    }
+
+    @GetMapping("/question/{id}")
+    public String question(){
+        return "question";
     }
 
 }

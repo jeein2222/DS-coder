@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.BufferedReader;
+
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -17,6 +19,7 @@ public class QuestionDTO {
     private String title;
     private String question;
     private String code;
+    private String comment;
 
 
     public QuestionDTO(final QuestionEntity entity){
@@ -24,6 +27,7 @@ public class QuestionDTO {
         this.title=entity.getTitle();
         this.question=entity.getQuestion();
         this.code=entity.getCode();
+        this.comment=entity.getComment();
 
     }
     public static QuestionEntity toEntity(final QuestionDTO dto){
@@ -32,6 +36,7 @@ public class QuestionDTO {
                 .title(dto.getTitle())
                 .question(dto.getQuestion())
                 .code(dto.getCode())
+                .comment(dto.getComment())
                 .build();
     }
 }

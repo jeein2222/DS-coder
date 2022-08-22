@@ -21,11 +21,13 @@ public class QuestionController {
     private QuestionService service;
 
     @PostMapping("/question/create")
+    @ResponseBody
     public ResponseEntity<?> createQuestion(@RequestBody QuestionDTO dto){ //
         try{
             String temporaryUserId="temporary-user";
             QuestionEntity entity= QuestionDTO.toEntity(dto);
             entity.setId(null);
+            entity.setComment(null);
             entity.setUserId(temporaryUserId);
             List<QuestionEntity> entities=service.create(entity);
             List<QuestionDTO> dtos=entities.stream().map(QuestionDTO::new).collect(Collectors.toList());
@@ -45,6 +47,13 @@ public class QuestionController {
         List<QuestionDTO> dtos = entities.stream().map(QuestionDTO::new).collect(Collectors.toList());
         ResponseDTO<QuestionDTO> response=ResponseDTO.<QuestionDTO>builder().data(dtos).build();
         return ResponseEntity.ok().body(response);
+    }
+
+    @GetMapping("/question/{id}")
+    @ResponseBody
+    public QuestionEntity getQuestionInfo(@RequestParam String id){
+        QuestionEntity entity= service.findById(id).orElseThrow(IllegalStateException::new);
+        return entity;
     }
 
     @PutMapping("/question/update")

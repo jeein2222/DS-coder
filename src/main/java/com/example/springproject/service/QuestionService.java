@@ -38,6 +38,7 @@ public class QuestionService {
             question.setTitle(entity.getTitle());
             question.setQuestion(entity.getQuestion());
             question.setCode(entity.getCode());
+            question.setComment(entity.getComment());
             repository.save(question);
         });
         return retrieve(entity.getUserId());

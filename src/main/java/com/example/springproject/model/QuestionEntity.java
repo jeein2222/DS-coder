@@ -6,17 +6,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.io.BufferedReader;
 
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @Entity
-@Table(name="Health")
+@Table(name="Question")
 public class QuestionEntity {
     @Id
     @GeneratedValue(generator="system-uuid")
@@ -25,6 +23,8 @@ public class QuestionEntity {
     private String userId; //이 오브젝트를 생성한 사용자의 아이디
     private String title;
     private String question;
+    @Lob
     private String code;
+    private String comment;
 
 }
