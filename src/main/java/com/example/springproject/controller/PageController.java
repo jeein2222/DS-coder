@@ -32,9 +32,5 @@ public class PageController {
 
     }
 
-    @GetMapping("/question/{id}")
-    public String question(){
-        return "question";
-    }
 
 }

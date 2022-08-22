@@ -49,12 +49,7 @@ public class QuestionController {
         return ResponseEntity.ok().body(response);
     }
 
-    @GetMapping("/question/{id}")
-    @ResponseBody
-    public QuestionEntity getQuestionInfo(@RequestParam String id){
-        QuestionEntity entity= service.findById(id).orElseThrow(IllegalStateException::new);
-        return entity;
-    }
+
 
     @PutMapping("/question/update")
     public ResponseEntity<?> updateQuestion(@RequestBody QuestionDTO dto){
