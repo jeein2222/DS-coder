@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <link rel="stylesheet" type="text/css" href="/css/question.css">
+    <link rel="stylesheet" type="text/css" href="/css/navbar.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/js/jquery.serializeObject.min.js"></script>
+    <script src="/js/record.js"></script>
+</head>
+<body>
+
+<div class="nav">
+    <a class="nav-logo">Grow Together, DS</a>
+    <ul class="nav-ul">
+        <li class="nav-item" onclick="location.href='/ds-sw/'"><a>Home</a></li>
+        <li class="nav-item" onclick="location.href='/ds-sw/question'"><a>Question</a></li>
+        <li class="nav-item" onclick="location.href='/ds-sw/info'"><a>IT Info</a></li>
+        <li class="nav-item" onclick="location.href='/ds-sw/login'"><a>Login</a></li>
+    </ul>
+</div>
+<div class="header" style="background-image:url('/img/RecordImg.jpg')">
+    <div class="record">
+        <form id="record-form">
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text" id="id_label">id</span>
+                <input type="text" name="id" id="id" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" visible="false">
+            </div>
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text" >exercise</span>
+                <input type="text" name="title" id="title" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            </div>
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text" > time</span>
+                <input type="text" name="time" id="time" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            </div>
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text" >food</span>
+                <input type="text" name="food" id="food" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            </div>
+        </form>
+            <button type="button" class="btn btn-primary" id="save" onclick="ajax_send()" value="call">Save</button>
+            <button type="button" class="btn btn-primary" id="retrieve" onclick="ajax_get()" >Retrieve</button>
+            <button type="button" class="btn btn-primary" id="remove" onclick="ajax_delete()" >Delete</button>
+            <button type="button" class="btn btn-primary" id="update" onclick="ajax_update()" >Update</button>
+            <br/>
+            <br/>
+            <div id="records">
+
+            </div>
+
+        </div>
+</div>
+</body>
+</html>

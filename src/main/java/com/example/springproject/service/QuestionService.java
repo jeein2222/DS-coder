@@ -1,7 +1,7 @@
 package com.example.springproject.service;
 
-import com.example.springproject.model.HealthEntity;
-import com.example.springproject.persistence.HealthRepository;
+import com.example.springproject.model.QuestionEntity;
+import com.example.springproject.persistence.QuestionRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,40 +11,39 @@ import java.util.Optional;
 
 @Slf4j
 @Service
-public class HealthService {
+public class QuestionService {
 
     @Autowired
-    private HealthRepository repository;
+    private QuestionRepository repository;
 
-    public List<HealthEntity> create(final HealthEntity entity){
+    public List<QuestionEntity> create(final QuestionEntity entity){
         validate(entity);
         repository.save(entity);
         log.info("Entity id : {} is saved.", entity.getId());
         return repository.findByUserId(entity.getUserId());
     }
 
-    public List<HealthEntity> retrieve(final String userId){
+    public List<QuestionEntity> retrieve(final String userId){
         return repository.findByUserId(userId);
     }
 
-    public Optional<HealthEntity> findById(final String id){
+    public Optional<QuestionEntity> findById(final String id){
         return repository.findById(id);
     }
 
-    public List<HealthEntity> update(final HealthEntity entity){
+    public List<QuestionEntity> update(final QuestionEntity entity){
         validate(entity);
-        final Optional<HealthEntity> original = repository.findById(entity.getId());
-        original.ifPresent(health -> {
-            health.setTitle(entity.getTitle());
-            health.setTime(entity.getTime());
-            health.setFood(entity.getFood());
-            health.setDone(entity.isDone());
-            repository.save(health);
+        final Optional<QuestionEntity> original = repository.findById(entity.getId());
+        original.ifPresent(question -> {
+            question.setTitle(entity.getTitle());
+            question.setQuestion(entity.getQuestion());
+            question.setCode(entity.getCode());
+            repository.save(question);
         });
         return retrieve(entity.getUserId());
     }
 
-    public List<HealthEntity> delete(final HealthEntity entity){
+    public List<QuestionEntity> delete(final QuestionEntity entity){
         validate(entity);
         try{
             repository.delete(entity);
@@ -56,7 +55,7 @@ public class HealthService {
     }
 
 
-    private void validate(final HealthEntity entity){
+    private void validate(final QuestionEntity entity){
         if(entity==null){
             log.warn("Entity cannot be null");
             throw new RuntimeException("Entity cannot be null");

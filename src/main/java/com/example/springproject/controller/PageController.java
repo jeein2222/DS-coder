@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins="*", allowedHeaders = "*")
 @Controller
-@RequestMapping("health")
+@RequestMapping("ds-sw")
 public class PageController {
 
     @GetMapping("/")
@@ -20,9 +20,9 @@ public class PageController {
         return "info";
 
     }
-    @GetMapping("/record")
+    @GetMapping("/question")
     public String record() {
-        return "record";
+        return "question";
 
     }
 
