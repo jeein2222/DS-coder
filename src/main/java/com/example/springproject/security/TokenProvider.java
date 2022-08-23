@@ -14,18 +14,17 @@ import java.util.Date;
 @Slf4j
 @Service
 public class TokenProvider {
-    private static final String SECRET_KEY = "adfsgsdgjkl23jklj434324";
+    private static final String SECRET_KEY = "NMA8JPctFuna59f5NMA8JPctFuna59f5";
     public String create(UserEntity userEntity){
-        Date exipryDate = Date.from(
-                Instant.now()
-                        .plus(1, ChronoUnit.DAYS)
-        );
+        Date expiryDate = Date.from(Instant.now().plus(1, ChronoUnit.DAYS));
+        log.info("TokenProvider.create(): " + userEntity.getId());
+
         return Jwts.builder()
                 .signWith(SignatureAlgorithm.HS512, SECRET_KEY)
                 .setSubject(userEntity.getId())
                 .setIssuer("ds-sw-app")
                 .setIssuedAt(new Date())
-                .setExpiration(exipryDate)
+                .setExpiration(expiryDate)
                 .compact();
     }
 
@@ -34,6 +33,7 @@ public class TokenProvider {
                 .setSigningKey(SECRET_KEY)
                 .parseClaimsJws(token)
                 .getBody();
+
         return claims.getSubject();
     }
 }

@@ -1,0 +1,15 @@
+.header{
+    height: 90vh;
+    background-repeat : no-repeat;
+    background-size : cover;
+    display: flex;
+    justify-content: center;
+}
+
+.vh-100{
+    position:absolute;
+    left:30px;
+    top:250px;
+
+
+}

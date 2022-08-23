@@ -3,7 +3,9 @@ package com.example.springproject.service;
 import com.example.springproject.model.UserEntity;
 import com.example.springproject.persistence.UserRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -26,8 +28,12 @@ public class UserService {
         return userRepository.save(userEntity);
     }
 
-    public UserEntity getByCredentials(final String email, final String password){
-            return userRepository.findByEmailAndPassword(email, password);
+    public UserEntity getByCredentials(final String email, final String password, final PasswordEncoder encoder){
+        final UserEntity originalUser = userRepository.findByEmail(email);
+        if(originalUser!=null && encoder.matches(password,originalUser.getPassword())){
+            return originalUser;
+        }
+        return null;
     }
 
 

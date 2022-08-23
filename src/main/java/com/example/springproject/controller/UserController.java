@@ -12,15 +12,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RestController
-@RequestMapping("ds-sw/auth")
+@RequestMapping("ds-sw")
 public class UserController {
 
     @Autowired
@@ -29,14 +28,19 @@ public class UserController {
     @Autowired
     private TokenProvider tokenProvider;
 
-    @PostMapping("/signup")
+    private PasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
+
+    @PostMapping("/auth/signup")
+    @ResponseBody
     public ResponseEntity<?> registerUser(@RequestBody UserDTO userDTO) {
         try {
             UserEntity user = UserEntity.builder()
                     .email(userDTO.getEmail())
                     .username(userDTO.getUsername())
-                    .password(userDTO.getPassword())
+                    .password(passwordEncoder.encode(userDTO.getPassword()))
                     .build();
+            System.out.println(user);
+
             UserEntity registerdUser = userService.create(user);
             UserDTO responseUserDTO = UserDTO.builder()
                     .email(registerdUser.getEmail())
@@ -48,17 +52,17 @@ public class UserController {
 
         } catch (Exception e) {
             ResponseDTO responseDTO = ResponseDTO.builder().error(e.getMessage()).build();
-            return ResponseEntity
-                    .badRequest()
-                    .body(responseDTO);
+            return ResponseEntity.badRequest().body(responseDTO);
         }
     }
 
-    @PostMapping("/signin")
+    @PostMapping("/auth/signin")
+    @ResponseBody
     public ResponseEntity<?> authenticate(@RequestBody UserDTO userDTO){
         UserEntity user=userService.getByCredentials(
                 userDTO.getEmail(),
-                userDTO.getPassword()
+                userDTO.getPassword(),
+                passwordEncoder
         );
         if(user!=null){
             final String token = tokenProvider.create(user);
@@ -69,12 +73,8 @@ public class UserController {
                     .build();
             return ResponseEntity.ok().body(responseUserDTO);
         }else{
-            ResponseDTO responseDTO = ResponseDTO.builder()
-                    .error("Login failed.")
-                    .build();
-            return ResponseEntity
-                    .badRequest()
-                    .body(responseDTO);
+            ResponseDTO responseDTO = ResponseDTO.builder().error("Login failed.").build();
+            return ResponseEntity.badRequest().body(responseDTO);
         }
 
     }
