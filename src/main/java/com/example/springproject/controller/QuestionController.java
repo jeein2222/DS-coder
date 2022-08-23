@@ -6,6 +6,7 @@ import com.example.springproject.model.QuestionEntity;
 import com.example.springproject.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,13 +23,12 @@ public class QuestionController {
 
     @PostMapping("/question/create")
     @ResponseBody
-    public ResponseEntity<?> createQuestion(@RequestBody QuestionDTO dto){ //
+    public ResponseEntity<?> createQuestion(@AuthenticationPrincipal String userId,@RequestBody QuestionDTO dto){ //
         try{
-            String temporaryUserId="temporary-user";
             QuestionEntity entity= QuestionDTO.toEntity(dto);
             entity.setId(null);
             entity.setComment(null);
-            entity.setUserId(temporaryUserId);
+            entity.setUserId(userId);
             List<QuestionEntity> entities=service.create(entity);
             List<QuestionDTO> dtos=entities.stream().map(QuestionDTO::new).collect(Collectors.toList());
             ResponseDTO<QuestionDTO> response=ResponseDTO.<QuestionDTO>builder().data(dtos).build();
@@ -41,9 +41,8 @@ public class QuestionController {
     }
 
     @GetMapping("/question/retrieve")
-    public ResponseEntity<?> retrieveQuestionList(){
-        String temporaryUserId="temporary-user";
-        List<QuestionEntity> entities = service.retrieve(temporaryUserId);
+    public ResponseEntity<?> retrieveQuestionList(@AuthenticationPrincipal String userId){
+        List<QuestionEntity> entities = service.retrieve(userId);
         List<QuestionDTO> dtos = entities.stream().map(QuestionDTO::new).collect(Collectors.toList());
         ResponseDTO<QuestionDTO> response=ResponseDTO.<QuestionDTO>builder().data(dtos).build();
         return ResponseEntity.ok().body(response);
@@ -52,10 +51,9 @@ public class QuestionController {
 
 
     @PutMapping("/question/update")
-    public ResponseEntity<?> updateQuestion(@RequestBody QuestionDTO dto){
-        String temporaryUserId="temporary-user";
+    public ResponseEntity<?> updateQuestion(@AuthenticationPrincipal String userId, @RequestBody QuestionDTO dto){
         QuestionEntity entity= QuestionDTO.toEntity(dto);
-        entity.setUserId(temporaryUserId);
+        entity.setUserId(userId);
         List<QuestionEntity> entities = service.update(entity);
         List<QuestionDTO> dtos = entities.stream().map(QuestionDTO::new).collect(Collectors.toList());
         ResponseDTO<QuestionDTO> response=ResponseDTO.<QuestionDTO>builder().data(dtos).build();
@@ -63,11 +61,10 @@ public class QuestionController {
     }
 
     @DeleteMapping("/question/delete")
-    public ResponseEntity<?> deleteQuestion(@RequestParam(value="id") String id){
+    public ResponseEntity<?> deleteQuestion(@AuthenticationPrincipal String userId, @RequestParam(value="id") String id){
         try{
-            String temporaryUserId="temporary-user";
             Optional<QuestionEntity> entity=service.findById(id);
-            entity.orElseThrow(IllegalStateException::new).setUserId(temporaryUserId);
+            entity.orElseThrow(IllegalStateException::new).setUserId(userId);
             List<QuestionEntity> entities = service.delete(entity.orElseThrow(IllegalStateException::new));
             List<QuestionDTO> dtos = entities.stream().map(QuestionDTO::new).collect(Collectors.toList());
             ResponseDTO<QuestionDTO> response=ResponseDTO.<QuestionDTO>builder().data(dtos).build();

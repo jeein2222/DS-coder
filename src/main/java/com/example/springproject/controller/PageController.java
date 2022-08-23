@@ -20,6 +20,12 @@ public class PageController {
         return "info";
 
     }
+
+    @GetMapping("/login")
+    public String login(){
+        return "signin";
+    }
+
     @GetMapping("/question")
     public String question_list() {
         return "question_list";
