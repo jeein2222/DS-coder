@@ -26,7 +26,7 @@ body{
     overflow:scroll;
     top:100px;
     width:1200px;
-    height:500px;
+    height:300px;
     display:flex;
     flex-direction: column;
 }
@@ -38,15 +38,13 @@ body{
     justify-content: center;
 }
 
-
-.list-group w-auto{
-    width:800px;
-
+#update{
+    flex:left;
 }
 
 #code{
-    height:400px;
-
+    flex:left;
+    height:300px;
 }
 
 #acode {

@@ -33,12 +33,15 @@
         <div id="question_list">
 
         </div>
-        <p></p>
-        <p></p>
         <br>
         <hr style="color:white">
-        <h3 style="color:white">Your Last Records..🤗</h3>
-        <div id="question_info">
+        <h4 style="color:white">Your Last Records..🤗</h4>
+        <form id="record_info">
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text">Id</span>
+                <input type="text" name="id" id="id" class="form-control" aria-label="Sizing example input"
+                       aria-describedby="inputGroup-sizing-sm">
+            </div>
             <div class="input-group input-group-sm mb-3">
                 <span class="input-group-text">Title</span>
                 <input type="text" name="title" id="title" class="form-control" aria-label="Sizing example input"
@@ -64,7 +67,9 @@
                     <code></code>
                 </pre>
             </div>
-        </div>
+        </form>
+        <button type="button" class="btn btn-success" id="update" onclick="ajax_update()" value="call">Update</button>
+        <button type="button" class="btn btn-danger" id="delete" onclick="ajax_delete()" value="call">Delete</button>
 
     </div>
 </div>

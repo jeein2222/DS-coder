@@ -3,7 +3,7 @@ package com.example.springproject.controller;
 import com.example.springproject.dto.RecordDTO;
 import com.example.springproject.dto.ResponseDTO;
 import com.example.springproject.model.RecordEntity;
-import com.example.springproject.service.QuestionService;
+import com.example.springproject.service.RecordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 public class RecordController {
 
     @Autowired
-    private QuestionService service;
+    private RecordService service;
 
     @PostMapping("/question/create")
     @ResponseBody
@@ -27,7 +27,6 @@ public class RecordController {
         try{
             RecordEntity entity= RecordDTO.toEntity(dto);
             entity.setId(null);
-            entity.setComment(null);
             entity.setUserId(userId);
             List<RecordEntity> entities=service.create(entity);
             List<RecordDTO> dtos=entities.stream().map(RecordDTO::new).collect(Collectors.toList());
@@ -54,6 +53,7 @@ public class RecordController {
     public ResponseEntity<?> updateQuestion(@AuthenticationPrincipal String userId, @RequestBody RecordDTO dto){
         RecordEntity entity= RecordDTO.toEntity(dto);
         entity.setUserId(userId);
+        System.out.println(entity);
         List<RecordEntity> entities = service.update(entity);
         List<RecordDTO> dtos = entities.stream().map(RecordDTO::new).collect(Collectors.toList());
         ResponseDTO<RecordDTO> response=ResponseDTO.<RecordDTO>builder().data(dtos).build();

@@ -19,7 +19,6 @@ public class RecordDTO {
     private String title;
     private String question;
     private String code;
-    private String comment;
 
 
     public RecordDTO(final RecordEntity entity){
@@ -27,7 +26,6 @@ public class RecordDTO {
         this.title=entity.getTitle();
         this.question=entity.getQuestion();
         this.code=entity.getCode();
-        this.comment=entity.getComment();
         this.userid=entity.getUserId();
 
     }
@@ -37,7 +35,6 @@ public class RecordDTO {
                 .title(dto.getTitle())
                 .question(dto.getQuestion())
                 .code(dto.getCode())
-                .comment(dto.getComment())
                 .userId(dto.getUserid())
                 .build();
     }

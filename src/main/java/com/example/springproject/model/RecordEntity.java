@@ -24,6 +24,5 @@ public class RecordEntity {
     private String question;
     @Lob
     private String code;
-    private String comment;
 
 }

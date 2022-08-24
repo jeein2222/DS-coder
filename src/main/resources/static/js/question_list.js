@@ -1,5 +1,5 @@
 
-window.onload = function ajax_get(){
+window.onload = function ajax_get(){ //retrieve
     const currentDiv=document.getElementById('question_list');
     const accessToken=localStorage.getItem("token");
     $.ajax({
@@ -29,7 +29,6 @@ window.onload = function ajax_get(){
                             question.setAttribute("id","aquestion");
 
                             code.setAttribute("id","acode");
-
                             id.setAttribute("id","aid");
 
 
@@ -56,21 +55,58 @@ window.onload = function ajax_get(){
     });
 }
 
-function getQuestionInfo(e){
+function getQuestionInfo(e){ //하단 틀에 정보 넣기
     if (e.target !== e.currentTarget)
             return;
-//    e.preventDefault();
     const a = e.target;
     let listChild=a.childNodes;
     console.log(listChild);
 
+    let id=document.getElementById("id");
     let title=document.getElementById("title");
     let question=document.getElementById("question");
     let code=document.getElementById("code");
 
 
+    id.value=listChild[4].innerHTML;
     title.value=listChild[1].innerHTML;
     question.value=listChild[2].innerHTML;
     code.value=listChild[3].innerHTML;
 
+}
+
+function ajax_update(frm){
+    const formData=$("#record_info").serializeObject();
+    $.ajax({
+            url:'http://localhost:8080/ds-sw/question/update',
+            type:'PUT',
+            contentType:'application/json',
+            data:JSON.stringify(formData),
+            success:function(data){
+                console.log(data.data);
+            },error:function(xhr,status,error){
+                console.log("["+xhr.status+"]"+error);
+            }
+        });
+    location.reload();
+    return false;
+
+}
+
+
+function ajax_delete(frm){
+    const id=document.getElementById("id").value;
+    const param={"id":id};
+    $.ajax({
+        url:'question/delete',
+        type:'DELETE',
+        data:param,
+        success:function(data){
+            console.log(data.data);
+        },error:function(xhr,status,error){
+            console.log("["+xhr.status+"]"+error);
+        }
+    });
+    location.reload();
+    return false;
 }

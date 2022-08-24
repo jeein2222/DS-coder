@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @Slf4j
 @Service
-public class QuestionService {
+public class RecordService {
 
     @Autowired
     private RecordRepository repository;
@@ -38,7 +38,6 @@ public class QuestionService {
             question.setTitle(entity.getTitle());
             question.setQuestion(entity.getQuestion());
             question.setCode(entity.getCode());
-            question.setComment(entity.getComment());
             repository.save(question);
         });
         return retrieve(entity.getUserId());
