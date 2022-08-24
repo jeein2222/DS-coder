@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.io.BufferedReader;
 
 @Builder
 @NoArgsConstructor
@@ -15,7 +14,7 @@ import java.io.BufferedReader;
 @Data
 @Entity
 @Table(name="Question")
-public class QuestionEntity {
+public class RecordEntity {
     @Id
     @GeneratedValue(generator="system-uuid")
     @GenericGenerator(name="system-uuid",strategy = "uuid")

@@ -1,7 +1,7 @@
 package com.example.springproject.service;
 
-import com.example.springproject.model.QuestionEntity;
-import com.example.springproject.persistence.QuestionRepository;
+import com.example.springproject.model.RecordEntity;
+import com.example.springproject.persistence.RecordRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,26 +14,26 @@ import java.util.Optional;
 public class QuestionService {
 
     @Autowired
-    private QuestionRepository repository;
+    private RecordRepository repository;
 
-    public List<QuestionEntity> create(final QuestionEntity entity){
+    public List<RecordEntity> create(final RecordEntity entity){
         validate(entity);
         repository.save(entity);
         log.info("Entity id : {} is saved.", entity.getId());
         return repository.findByUserId(entity.getUserId());
     }
 
-    public List<QuestionEntity> retrieve(final String userId){
+    public List<RecordEntity> retrieve(final String userId){
         return repository.findByUserId(userId);
     }
 
-    public Optional<QuestionEntity> findById(final String id){
+    public Optional<RecordEntity> findById(final String id){
         return repository.findById(id);
     }
 
-    public List<QuestionEntity> update(final QuestionEntity entity){
+    public List<RecordEntity> update(final RecordEntity entity){
         validate(entity);
-        final Optional<QuestionEntity> original = repository.findById(entity.getId());
+        final Optional<RecordEntity> original = repository.findById(entity.getId());
         original.ifPresent(question -> {
             question.setTitle(entity.getTitle());
             question.setQuestion(entity.getQuestion());
@@ -44,7 +44,7 @@ public class QuestionService {
         return retrieve(entity.getUserId());
     }
 
-    public List<QuestionEntity> delete(final QuestionEntity entity){
+    public List<RecordEntity> delete(final RecordEntity entity){
         validate(entity);
         try{
             repository.delete(entity);
@@ -56,7 +56,7 @@ public class QuestionService {
     }
 
 
-    private void validate(final QuestionEntity entity){
+    private void validate(final RecordEntity entity){
         if(entity==null){
             log.warn("Entity cannot be null");
             throw new RuntimeException("Entity cannot be null");

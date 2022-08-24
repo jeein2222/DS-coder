@@ -27,6 +27,8 @@ body{
     top:100px;
     width:1200px;
     height:500px;
+    display:flex;
+    flex-direction: column;
 }
 
 #question_info{
@@ -39,6 +41,11 @@ body{
 
 .list-group w-auto{
     width:800px;
+
+}
+
+#code{
+    height:400px;
 
 }
 

@@ -1,12 +1,10 @@
 package com.example.springproject.dto;
 
-import com.example.springproject.model.QuestionEntity;
+import com.example.springproject.model.RecordEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.io.BufferedReader;
 
 @Builder
 @NoArgsConstructor
@@ -14,7 +12,7 @@ import java.io.BufferedReader;
 @Data
 
 //외부 사용자에게 서비스 내부의 로직, 데이터베이스 구조 등을 숨기기 위함.
-public class QuestionDTO {
+public class RecordDTO {
     private String id;
 
     private String userid;
@@ -24,7 +22,7 @@ public class QuestionDTO {
     private String comment;
 
 
-    public QuestionDTO(final QuestionEntity entity){
+    public RecordDTO(final RecordEntity entity){
         this.id=entity.getId();
         this.title=entity.getTitle();
         this.question=entity.getQuestion();
@@ -33,8 +31,8 @@ public class QuestionDTO {
         this.userid=entity.getUserId();
 
     }
-    public static QuestionEntity toEntity(final QuestionDTO dto){
-        return QuestionEntity.builder()
+    public static RecordEntity toEntity(final RecordDTO dto){
+        return RecordEntity.builder()
                 .id(dto.getId())
                 .title(dto.getTitle())
                 .question(dto.getQuestion())
