@@ -46,21 +46,24 @@
             <h3 style="color:white">IT Dictionary 😂</h3>
             <p style="color:white" >type it word in english</p>
             <p> </p>
-            <div class="input-group input-group-sm mb-3">
+            <div class="input-group mb-3">
                 <span class="input-group-text" >Word</span>
                 <input type="text" name="word" id="word" class="form-control" aria-label="Sizing example input"
-                       aria-describedby="inputGroup-sizing-sm">
+                       aria-describedby="inputGroup-sizing-default">
             </div>
             <button type="button" class="btn btn-warning" id="search" onclick="search_word()" value="call">Search</button>
             <button type="button" class="btn btn-secondary" id="clear" onclick="clear_word()" value="call">Clear</button>
 
             <br>
             <hr style="color:white">
-            <div class="input-group input-group-sm mb-3">
+            <div class="input-group mb-3">
                 <span class="input-group-text"> Meaning</span>
                 <input type="text" name="meaning" id="meaning" class="form-control" aria-label="Sizing example input"
-                       aria-describedby="inputGroup-sizing-sm">
+                       aria-describedby="inputGroup-sizing-default">
             </div>
+            <iframe src="" id="searchframe"
+                    title="😳찾으시는 단어가 없다면?" width="400" height="300" style="display:none">
+            </iframe>
         </form>
 
 
