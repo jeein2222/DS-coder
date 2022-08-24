@@ -13,23 +13,31 @@
     <script type="text/javascript" src="/js/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="/js/jquery.serializeObject.min.js"></script>
     <script src="/js/question_list.js"></script>
+    <script src="/js/logout.js"></script>
 </head>
 <body>
 
 <div class="nav">
-    <a class="nav-logo">Grow Together, DS</a>
+    <a class="nav-logo" onclick="location.href='/ds-sw/'">DS-Coder</a>
     <ul class="nav-ul">
-        <li class="nav-item" onclick="location.href='/ds-sw/'"><a>Home</a></li>
-        <li class="nav-item" onclick="location.href='/ds-sw/question'"><a>Question</a></li>
+        <li class="nav-item" onclick="location.href='/ds-sw/question'"><a>Board</a></li>
+        <li class="nav-item" onclick="location.href='/ds-sw/question/write'"><a>Records</a></li>
         <li class="nav-item" onclick="location.href='/ds-sw/info'"><a>IT Info</a></li>
-        <li class="nav-item" onclick="location.href='/ds-sw/auth/login'"><a>Login</a></li>
+        <li class="nav-item" id="join" onclick="location.href='/ds-sw/auth/join'"><a>Join</a></li>
+        <li class="nav-item" id="login" onclick="location.href='/ds-sw/auth/login'"><a>Login</a></li>
+        <li class="nav-item" id="logout" onclick="ajax_logout()"><a>Logout</a></li>
     </ul>
 </div>
-<div class="header" style="background-image:url('/img/RecordImg.jpg')">
+<div class="header" style="background-image:url('/img/question_write.jpg')">
     <div id="questions">
         <div id="question_list">
 
         </div>
+        <p></p>
+        <p></p>
+        <br>
+        <hr style="color:white">
+        <h3 style="color:white">Your Last Records..🤗</h3>
         <div id="question_info">
             <div class="input-group input-group-sm mb-3">
                 <span class="input-group-text">Title</span>
@@ -56,7 +64,7 @@
                 </pre>
             </div>
         </div>
-        <button type="button" id="go_write_button"class="btn btn-success" onclick="location.href='/ds-sw/question/write'">Ask them!</button>
+
     </div>
 </div>
 

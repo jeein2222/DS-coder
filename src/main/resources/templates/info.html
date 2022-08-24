@@ -5,16 +5,18 @@
     <title>Title</title>
     <link rel="stylesheet" type="text/css" href="/css/info.css">
     <link rel="stylesheet" type="text/css" href="/css/navbar.css">
-
+    <script src="/js/logout.js"></script>
 </head>
 <body>
 <div class="nav">
-    <a class="nav-logo">Grow Together, DS</a>
+    <a class="nav-logo" onclick="location.href='/ds-sw/'">DS-Coder</a>
     <ul class="nav-ul">
-        <li class="nav-item" onclick="location.href='/ds-sw/'"><a>Home</a></li>
-        <li class="nav-item" onclick="location.href='/ds-sw/question'"><a>Question</a></li>
+        <li class="nav-item" onclick="location.href='/ds-sw/question'"><a>Board</a></li>
+        <li class="nav-item" onclick="location.href='/ds-sw/question/write'"><a>Records</a></li>
         <li class="nav-item" onclick="location.href='/ds-sw/info'"><a>IT Info</a></li>
-        <li class="nav-item" onclick="location.href='/ds-sw/auth/login'"><a>Login</a></li>
+        <li class="nav-item" id="join" onclick="location.href='/ds-sw/auth/join'"><a>Join</a></li>
+        <li class="nav-item" id="login" onclick="location.href='/ds-sw/auth/login'"><a>Login</a></li>
+        <li class="nav-item" id="logout" onclick="ajax_logout()"><a>Logout</a></li>
     </ul>
 </div>
 <div class="header" style="background-image:url('/img/MainImg.jpg')">

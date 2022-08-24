@@ -30,7 +30,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
            .and()
            .authorizeRequests()
-                .antMatchers("/ds-sw/*","/ds-sw/auth/**","/css/**","/js/**","/fonts/**","/images/**").permitAll()
+                .antMatchers("/ds-sw/*","/ds-sw/question/**","/ds-sw/auth/**","/css/**","/js/**","/fonts/**","/img/**").permitAll()
            .anyRequest()
                 .authenticated();
         http.addFilterAfter(

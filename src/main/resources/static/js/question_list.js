@@ -1,9 +1,14 @@
 
 window.onload = function ajax_get(){
     const currentDiv=document.getElementById('question_list');
+    const accessToken=localStorage.getItem("token");
     $.ajax({
             url : 'http://localhost:8080/ds-sw/question/retrieve',
             dataType :"json",
+            beforeSend:function (xhr){
+                xhr.setRequestHeader("Content-type","application/json"),
+                xhr.setRequestHeader("Authorization","Bearer "+accessToken);
+            },
             success : function(data) {
                         let d=data.data;
                         console.log(d);

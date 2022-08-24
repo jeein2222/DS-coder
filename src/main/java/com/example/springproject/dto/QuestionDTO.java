@@ -16,6 +16,8 @@ import java.io.BufferedReader;
 //외부 사용자에게 서비스 내부의 로직, 데이터베이스 구조 등을 숨기기 위함.
 public class QuestionDTO {
     private String id;
+
+    private String userid;
     private String title;
     private String question;
     private String code;
@@ -28,6 +30,7 @@ public class QuestionDTO {
         this.question=entity.getQuestion();
         this.code=entity.getCode();
         this.comment=entity.getComment();
+        this.userid=entity.getUserId();
 
     }
     public static QuestionEntity toEntity(final QuestionDTO dto){
@@ -37,6 +40,7 @@ public class QuestionDTO {
                 .question(dto.getQuestion())
                 .code(dto.getCode())
                 .comment(dto.getComment())
+                .userId(dto.getUserid())
                 .build();
     }
 }

@@ -6,10 +6,13 @@
     justify-content: center;
 }
 
+body{
+    marin-top:10px;
+    marin-left:10px;
+}
+
 .vh-100{
     position:absolute;
-    left:30px;
-    top:250px;
-
+    top:200px;
 
 }

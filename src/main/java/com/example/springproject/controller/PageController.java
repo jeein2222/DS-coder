@@ -23,12 +23,12 @@ public class PageController {
 
     @GetMapping("/auth/login")
     public String login(){
-        return "signin";
+        return "login";
     }
 
     @GetMapping("/auth/join")
     public String join(){
-        return "signup";
+        return "join";
     }
 
     @GetMapping("/question")

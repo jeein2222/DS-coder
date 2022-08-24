@@ -40,14 +40,13 @@ public class UserController {
                     .password(passwordEncoder.encode(userDTO.getPassword()))
                     .build();
             System.out.println(user);
-
             UserEntity registerdUser = userService.create(user);
             UserDTO responseUserDTO = UserDTO.builder()
                     .email(registerdUser.getEmail())
                     .id(registerdUser.getId())
                     .username(registerdUser.getUsername())
                     .build();
-
+            System.out.println(responseUserDTO);
             return ResponseEntity.ok().body(responseUserDTO);
 
         } catch (Exception e) {
@@ -71,6 +70,8 @@ public class UserController {
                     .id(user.getId())
                     .token(token)
                     .build();
+            System.out.println(responseUserDTO);
+
             return ResponseEntity.ok().body(responseUserDTO);
         }else{
             ResponseDTO responseDTO = ResponseDTO.builder().error("Login failed.").build();
