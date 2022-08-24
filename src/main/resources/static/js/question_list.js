@@ -1,14 +1,8 @@
-
 window.onload = function ajax_get(){ //retrieve
     const currentDiv=document.getElementById('question_list');
-    const accessToken=localStorage.getItem("token");
     $.ajax({
             url : 'http://localhost:8080/ds-sw/question/retrieve',
             dataType :"json",
-            beforeSend:function (xhr){
-                xhr.setRequestHeader("Content-type","application/json"),
-                xhr.setRequestHeader("Authorization","Bearer "+accessToken);
-            },
             success : function(data) {
                         let d=data.data;
                         console.log(d);
@@ -55,6 +49,13 @@ window.onload = function ajax_get(){ //retrieve
     });
 }
 
+function update_code() {
+  const result_elem = document.querySelector("#highlighting-code code");
+  const text = document.querySelector("#code").value;
+  let html = hljs.highlightAuto(text).value;
+  result_elem.innerHTML =  html.replace(new RegExp("  ", "g"), "&nbsp; ");;
+}
+
 function getQuestionInfo(e){ //하단 틀에 정보 넣기
     if (e.target !== e.currentTarget)
             return;
@@ -67,7 +68,7 @@ function getQuestionInfo(e){ //하단 틀에 정보 넣기
     let question=document.getElementById("question");
     let code=document.getElementById("code");
 
-
+    console.log(listChild[2],listChild[3])
     id.value=listChild[4].innerHTML;
     title.value=listChild[1].innerHTML;
     question.value=listChild[2].innerHTML;
