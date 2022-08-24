@@ -21,11 +21,11 @@ public class PageController {
 
     }
 
-//    @GetMapping("/login")
-//    public String index() {
-//        return "index";
-//
-//    }
+    @GetMapping("/dic")
+    public String index() {
+        return "dic";
+
+    }
 
     @GetMapping("/auth/login")
     public String login(){
