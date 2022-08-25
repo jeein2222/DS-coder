@@ -77,8 +77,14 @@ function search_word(){
     if (wordList[word.value]){
         meaning.value=wordList[word.value];
     }else{
-        alert("단어가 등록되어 있지 않습니다😥 다음 사이트에서 결과를 확인해보세요!");
+        alert("단어가 등록되어 있지 않습니다😥 다음페이지에서 검색해보세요!");
+//        const searchframe=document.getElementById("searchframe")
+//        searchframe.setAttribute("style","display:block;");
+//        document.cookie = "safeCookie1=foo; SameSite=Lax";
+//        document.cookie = "safeCookie2=foo";
+//        document.cookie = "crossCookie=bar; SameSite=None; Secure";
         location.href="https://translate.google.co.kr/?hl=ko&sl=en&tl=ko&text="+word.value+"&op=translate";
+//       searchframe.setAttribute("src","https://translate.google.co.kr/?hl=ko&sl=en&tl=ko&text="+word.value+"&op=translate")
     }
 
     return false;

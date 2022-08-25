@@ -33,7 +33,7 @@
     <ul class="nav-ul">
         <li class="nav-item" onclick="location.href='/ds-sw/question'"><a>Board</a></li>
         <li class="nav-item" onclick="location.href='/ds-sw/question/write'"><a>Records</a></li>
-        <li class="nav-item" onclick="location.href='/ds-sw/dic'"><a>IT Info</a></li>
+        <li class="nav-item" onclick="location.href='/ds-sw/info'"><a>IT Info</a></li>
         <li class="nav-item" onclick="location.href='/ds-sw/dic'"><a>IT Dictionary</a></li>
         <li class="nav-item" id="join" onclick="location.href='/ds-sw/auth/join'"><a>Join</a></li>
         <li class="nav-item" id="login" onclick="location.href='/ds-sw/auth/login'"><a>Login</a></li>
@@ -46,24 +46,25 @@
             <h3 style="color:white">IT Dictionary 😂</h3>
             <p style="color:white" >type it word in english</p>
             <p> </p>
-            <div class="input-group mb-3">
+            <div class="input-group input-group-lg">
                 <span class="input-group-text" >Word</span>
                 <input type="text" name="word" id="word" class="form-control" aria-label="Sizing example input"
-                       aria-describedby="inputGroup-sizing-default">
+                       aria-describedby="inputGroup-sizing-lg">
             </div>
+            <br>
             <button type="button" class="btn btn-warning" id="search" onclick="search_word()" value="call">Search</button>
             <button type="button" class="btn btn-secondary" id="clear" onclick="clear_word()" value="call">Clear</button>
 
             <br>
             <hr style="color:white">
-            <div class="input-group mb-3">
+            <div class="input-group input-group-lg">
                 <span class="input-group-text"> Meaning</span>
                 <input type="text" name="meaning" id="meaning" class="form-control" aria-label="Sizing example input"
-                       aria-describedby="inputGroup-sizing-default">
+                       aria-describedby="inputGroup-sizing-lg">
             </div>
-            <iframe src="" id="searchframe"
-                    title="😳찾으시는 단어가 없다면?" width="400" height="300" style="display:none">
-            </iframe>
+<!--            <iframe src="" id="searchframe"-->
+<!--                    title="😳찾으시는 단어가 없다면?" width="400" height="300" style="display:none">-->
+<!--            </iframe>-->
         </form>
 
 

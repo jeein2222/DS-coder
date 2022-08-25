@@ -6,11 +6,23 @@
     justify-content: center;
 }
 
-.title{
+.info{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.infos{
+    display:flex;
+}
+
+#news1{
+    float:left;
+}
+
+#news2{
+    float:left;
 }
 
 .title h1{

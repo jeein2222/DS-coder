@@ -26,21 +26,24 @@ body{
     overflow:scroll;
     top:0px;
     width:1200px;
-    height:600px;
+    height:250px;
     display:flex;
     flex-direction: column;
 }
 
-#code{
-    height:150px;
-}
-
 #highlighting-code{
-    height:150px;
+    float:left;
+    width:450px;
+    height:200px;
 }
 
 #update{
-    float:left;
+    flex:left;
+}
+
+#code{
+    flex:left;
+    height:200px;
 }
 
 #acode {

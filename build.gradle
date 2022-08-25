@@ -26,6 +26,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-websocket'
 	implementation 'org.webjars:sockjs-client:1.1.2'
 	implementation 'org.webjars:stamp-websocket:2.3.3'
+	implementation 'org.jsoup:jsoup:1.15.3'
 	compileOnly 'org.projectlombok:lombok'
 	//in-memory db로 로컬 환경에서 메모리상에 db 구축해줌
 	runtimeOnly 'com.h2database:h2'

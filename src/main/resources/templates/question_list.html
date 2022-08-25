@@ -35,46 +35,65 @@
 </div>
 <div class="header" style="background-image:url('/img/question_write.jpg')">
     <div id="questions">
-        <div id="question_list">
+        <div class="row">
+            <div class="col" id="question_list">
 
-        </div>
-        <br>
-        <hr style="color:white">
-        <h4 style="color:white">Your Last Records..🤗</h4>
-        <form id="record_info">
-            <div class="input-group input-group-sm mb-3">
-                <span class="input-group-text">Id</span>
-                <input type="text" name="id" id="id" class="form-control" aria-label="Sizing example input"
-                       aria-describedby="inputGroup-sizing-sm">
             </div>
-            <div class="input-group input-group-sm mb-3">
-                <span class="input-group-text">Problem</span>
-                <input type="text" name="title" id="title" class="form-control" aria-label="Sizing example input"
-                       aria-describedby="inputGroup-sizing-sm">
-            </div>
-            <div class="input-group input-group-sm mb-3">
-                <span class="input-group-text"> Solution</span>
-                <input type="text" name="question" id="question" class="form-control" aria-label="Sizing example input"
-                       aria-describedby="inputGroup-sizing-sm">
-            </div>
-            <div class="input-group input-group-sm mb-3">
-                <span class="input-group-text" style="height:300px">Code</span>
-                <textarea
-                        id="code"
-                        name="code"
-                        cols="80"
-                        placeholder="소스코드 입력"
-                        spellcheck="false"
-                        oninput="update_code();"
-                        style="overflow:scroll"
-                        ></textarea>
-                <pre id="highlighting-code" class="hljs" style="overflow:scroll">
+            <div class="col">
+                <form id="record_info">
+                    <h4 style="color:white">Your Last Records..🤗</h4>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Id</span>
+                        <input type="text" name="id" id="id" class="form-control" aria-label="Sizing example input"
+                               aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Problem</span>
+                        <input type="text" name="title" id="title" class="form-control" aria-label="Sizing example input"
+                               aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text"> Solution</span>
+                        <input type="text" name="question" id="question" class="form-control" aria-label="Sizing example input"
+                               aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <span class="input-group-text" style="width:60px">Code</span>
+                        </div>
+                        <div class="col">
+                            <textarea
+                                    id="code"
+                                    name="code"
+                                    cols="80"
+                                    placeholder="소스코드 입력"
+                                    spellcheck="false"
+                                    oninput="update_code();"
+                                    style="overflow:scroll"
+                            ></textarea>
+                        </div>
+                        <div class="col">
+                            <pre id="highlighting-code" class="hljs" style="overflow:scroll">
                     <code></code>
                 </pre>
+                        </div>
+
+
+                    </div>
+                    <div class="input-group input-group-sm mb-3">
+
+
+
+
+                    </div>
+                </form>
+                <button type="button" class="btn btn-success" id="update" onclick="ajax_update()" value="call">Update</button>
+                <button type="button" class="btn btn-danger" id="delete" onclick="ajax_delete()" value="call">Delete</button>
+
             </div>
-        </form>
-        <button type="button" class="btn btn-success" id="update" onclick="ajax_update()" value="call">Update</button>
-        <button type="button" class="btn btn-danger" id="delete" onclick="ajax_delete()" value="call">Delete</button>
+        </div>
+
+
 
     </div>
 </div>
