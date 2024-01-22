@@ -1,14 +1,6 @@
 package com.example.springproject.controller;
-import org.jsoup.Connection;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
-import java.io.IOException;
-
 
 @CrossOrigin(origins="*", allowedHeaders = "*")
 @Controller
@@ -16,10 +8,7 @@ import java.io.IOException;
 public class PageController {
 
     @GetMapping("/")
-    public String home() {
-        return "home";
-
-    }
+    public String home() { return "home"; }
 
     @GetMapping("/info")
     public String info() {
@@ -27,10 +16,7 @@ public class PageController {
     }
 
     @GetMapping("/dic")
-    public String index() {
-        return "dic";
-
-    }
+    public String index() { return "dic"; }
 
     @GetMapping("/auth/login")
     public String login(){

@@ -70,8 +70,6 @@ public class UserController {
                     .id(user.getId())
                     .token(token)
                     .build();
-            System.out.println(responseUserDTO);
-
             return ResponseEntity.ok().body(responseUserDTO);
         }else{
             ResponseDTO responseDTO = ResponseDTO.builder().error("Login failed.").build();
