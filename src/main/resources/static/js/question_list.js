@@ -1,7 +1,7 @@
 window.onload = function ajax_get(){ //retrieve
     const currentDiv=document.getElementById('question_list');
     $.ajax({
-            url : 'http://localhost:8080/ds-sw/question/retrieve',
+            url : 'http://ec2-15-165-161-6.ap-northeast-2.compute.amazonaws.com:8080/ds-sw/question/retrieve',
             dataType :"json",
             success : function(data) {
                         let d=data.data;
@@ -79,7 +79,7 @@ function getQuestionInfo(e){ //하단 틀에 정보 넣기
 function ajax_update(frm){
     const formData=$("#record_info").serializeObject();
     $.ajax({
-            url:'http://localhost:8080/ds-sw/question/update',
+            url:'http://ec2-15-165-161-6.ap-northeast-2.compute.amazonaws.com:8080/ds-sw/question/update',
             type:'PUT',
             contentType:'application/json',
             data:JSON.stringify(formData),

@@ -6,7 +6,7 @@ function ajax_send(frm){ //질문 저장
     const param={"title":title,"question":problem,"code":code};
     const accessToken=localStorage.getItem("token");
     $.ajax({
-        url:'http://localhost:8080/ds-sw/question/create',
+        url:'http://ec2-15-165-161-6.ap-northeast-2.compute.amazonaws.com:8080/ds-sw/question/create',
         type:'POST',
         contentType:'application/json',
         data:JSON.stringify(param),
@@ -18,7 +18,7 @@ function ajax_send(frm){ //질문 저장
     });
     clear();
     alert("저장되었습니다!");
-    window.location.href = 'http://localhost:8080/ds-sw/question';
+    window.location.href = 'http://ec2-15-165-161-6.ap-northeast-2.compute.amazonaws.com:8080/ds-sw/question';
     return false;
 }
 
